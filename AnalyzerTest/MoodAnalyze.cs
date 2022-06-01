@@ -12,8 +12,8 @@ namespace AnalyzerTest
             moodAnalyzer = new MoodAnalyzer("");
         }
         [TestMethod]
-        [DataRow("", "message is Empty")]
-        [DataRow(null, "message is null")]
+        [DataRow(" ", "Message is Empty")]
+        [DataRow(null, "Message is Null")]
         public void InputInString_CheckingMoodAnalysis_MustBeReturn_Null(string input, string expected)
         {
             try
@@ -22,10 +22,11 @@ namespace AnalyzerTest
             }
             catch (MoodAnalyzerException ex)
             {
-                Assert.AreEqual(ex.Message, "Message is Null");
+                Assert.AreEqual(ex.Message, "message is Null");
             }
         }
-        public void InputInString_CheckingMoodAnalysis_MustBeReturn_EmptyMessage(string input, string expected)
+        
+        public void MoodAnalysereturnEmpty(string input, string expected)
         {
             try
             {
@@ -36,6 +37,13 @@ namespace AnalyzerTest
                 Assert.AreEqual(ex.Message, "Message is Empty");
             }
 
+        }
+        [TestMethod]
+        public void GivenMoodAnalysisClassName_ShouldReturnMoodAnalysisObject()
+        {
+            object expected = new MoodAnalyzer();
+            object obj = AnalyzeFactory.CreateMoodAnalysis("MoodAnalyzerProgram.MoodAnalyzer", "MoodAnalyzer");
+            expected.Equals(obj);
         }
     }
 }
