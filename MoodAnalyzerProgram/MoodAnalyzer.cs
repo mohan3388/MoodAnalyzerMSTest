@@ -17,19 +17,26 @@ namespace MoodAnalyzerProgram
         {
             try
             {
-
-                if (message.ToLower().Contains("HAPPY"))
+                if (message == null)
                 {
-                    return "HAPPY";
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL_MOOD, "Message is Null");
+                }
+                if (message.Equals(" "))
+                {
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY_MOOD, "Message is Empty");
+                }
+                if (message.ToLower().Contains("happy"))
+                {
+                    return "Happy";
                 }
                 else
                 {
-                    return "SAD";
+                    return "Sad";
                 }
             }
             catch (Exception)
             {
-                return "HAPPY";
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY_MOOD, "Message is Empty");
             }
 
         }
