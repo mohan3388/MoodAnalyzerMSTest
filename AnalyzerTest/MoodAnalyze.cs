@@ -12,8 +12,8 @@ namespace AnalyzerTest
             moodAnalyzer = new MoodAnalyzer("");
         }
         [TestMethod]
-        [DataRow(" ", "Message is Empty")]
-        [DataRow(null, "Message is Null")]
+        [DataRow(" ", "message is Empty")]
+        [DataRow(null, "message is null")]
         public void InputInString_CheckingMoodAnalysis_MustBeReturn_Null(string input, string expected)
         {
             try
@@ -22,11 +22,11 @@ namespace AnalyzerTest
             }
             catch (MoodAnalyzerException ex)
             {
-                Assert.AreEqual(ex.Message, "message is Null");
+                Assert.AreEqual(ex.Message, "message is null");
             }
         }
-        
-        public void MoodAnalysereturnEmpty(string input, string expected)
+        [TestMethod]
+        public void InputInString_CheckingMoodAnalysis_MustBeReturn_Empty(string input, string expected)
         {
             try
             {
@@ -34,9 +34,8 @@ namespace AnalyzerTest
             }
             catch (MoodAnalyzerException ex)
             {
-                Assert.AreEqual(ex.Message, "Message is Empty");
+                Assert.AreEqual(ex.Message, "message is Empty");
             }
-
         }
         [TestMethod]
         public void GivenMoodAnalysisClassName_ShouldReturnMoodAnalysisObject()
@@ -45,5 +44,13 @@ namespace AnalyzerTest
             object obj = AnalyzeFactory.CreateMoodAnalysis("MoodAnalyzerProgram.MoodAnalyzer", "MoodAnalyzer");
             expected.Equals(obj);
         }
+        [TestMethod]
+        public void GivenMoodAnalysisClassName_ShouldReturnMoodAnalysisObject_UsingparameterizedConstructor()
+        {
+            object expected = new MoodAnalyzer("HAPPY");
+            object obj = AnalyzeFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", "HAPPY");
+            expected.Equals(obj);
+        }
+
     }
 }

@@ -30,13 +30,13 @@ namespace MoodAnalyzerProgram
                     throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL_MOOD, "Message is Null");
                 }
 
-                if (message.ToLower().Contains("HAPPY"))
+                if (message.ToLower().Contains("happy"))
                 {
-                    return "HAPPY";
+                    return "Happy";
                 }
                 else
                 {
-                    return "SAD";
+                    return "Sad";
                 }
             }
             catch (MoodAnalyzerException)
